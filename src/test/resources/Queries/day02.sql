@@ -138,17 +138,17 @@ where SALARY = (
     select max(SALARY) from EMPLOYEES
     where salary < (select max(SALARY) from EMPLOYEES));
 
+--3rd ve sonrasi ayni mantikla isliyor.
 
 -- Display all infromation who is making 5th salary
 select * from EMPLOYEES
 where SALARY = ( --5.kisinin maasini sayisal olarak bulalim.
     select min(SALARY) from ( --table ad yerine kendimiz sort ederek tablo olusturduk
                             select distinct SALARY from EMPLOYEES
-                            order by SALARY desc)
-                            where rownum<6
+                            order by SALARY desc) --default order by (asc)
+    where rownum<6 --limit 5)
                                 )
   ;
-
 
 -- Display all infromation who is making 15th salary
 select * from EMPLOYEES
